@@ -24,14 +24,12 @@ class TicketBookingIRCTC implements Runnable {
 
 	public void run() {
 
-		System.out.println("Waiting to book ticket : "
-				+ Thread.currentThread().getName());
+		System.out.println("Waiting to book ticket : " + Thread.currentThread().getName());
 		/* get hold of lock for booking ticket */
 		customLock.lock();
 
 		if (ticketsAvailable > 0) {
-			System.out.println("Ticket booking started  for : "
-					+ Thread.currentThread().getName());
+			System.out.println("Ticket booking started  for : " + Thread.currentThread().getName());
 
 			// Ticket booking time is 2 sec, so sleep for 2sec
 			try {
@@ -40,16 +38,13 @@ class TicketBookingIRCTC implements Runnable {
 			}
 			/* Update available ticket count */
 			ticketsAvailable--;
-			System.out.println("Congratulation!!, Ticket BOOKED "
-					+ "successfully for : " + Thread.currentThread().getName());
-			System.out.println("currently ticketsAvailable = "
-					+ ticketsAvailable);
+			System.out.println(
+					"Congratulation!!, Ticket BOOKED " + "successfully for : " + Thread.currentThread().getName());
+			System.out.println("currently ticketsAvailable = " + ticketsAvailable);
 		} else {
 			ticketsAvailable--;
-			System.out.println("Sorry!! Ticket NOT BOOKED for : "
-					+ Thread.currentThread().getName()
-					+ ". Current booking status is Waiting list(W/L): "
-					+ Math.abs(ticketsAvailable));
+			System.out.println("Sorry!! Ticket NOT BOOKED for : " + Thread.currentThread().getName()
+					+ ". Current booking status is Waiting list(W/L): " + Math.abs(ticketsAvailable));
 		}
 		customLock.unlock();
 	}

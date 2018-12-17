@@ -1,8 +1,8 @@
 package com.hs.deadlock;
 
 public class CustomDeadLock {
-	public static Object lock1 = new Object();
-	public static Object lock2 = new Object();
+	private static Object lock1 = new Object();
+	private static Object lock2 = new Object();
 
 	private static class ThreadDemo1 extends Thread {
 		public void run() {

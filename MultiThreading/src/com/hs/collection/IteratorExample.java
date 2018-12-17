@@ -44,8 +44,5 @@ public class IteratorExample {
 				myMap.put("4", "4");
 			}
 		}
-		
-		
-
 	}
 }

@@ -1,17 +1,21 @@
 package com.hs.atomic;
 
+import java.util.IdentityHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class JavaAtomic {
 
 	public static void main(String[] args) throws InterruptedException {
+		ProcessingThread pt = new ProcessingThread();
+		Thread t1 = new Thread(pt, "t1");
+		t1.start();
+		Thread t2 = new Thread(pt, "t2");
+		t2.start();
+		t1.join();
+		t2.join();
+		System.out.println("Processing count=" + pt.getCount());
 
-		
-		 ProcessingThread pt = new ProcessingThread(); Thread t1 = new
-		 Thread(pt, "t1"); t1.start(); Thread t2 = new Thread(pt, "t2");
-		 t2.start(); t1.join(); t2.join();
-		 System.out.println("Processing count=" + pt.getCount());
-		 
-/*
 		// it shorts based on key
 		Map<String, String> treeMap = new TreeMap<String, String>();
 		treeMap.put("abc", "abc");
@@ -22,8 +26,7 @@ public class JavaAtomic {
 		treeMap.put("djf", "pqr");
 
 		for (Map.Entry<String, String> entry : treeMap.entrySet()) {
-			System.out.println("key is " + entry.getKey() + " and value is "
-					+ entry.getValue());
+			System.out.println("key is " + entry.getKey() + " and value is " + entry.getValue());
 		}
 
 		System.out.println(".................................");
@@ -35,14 +38,7 @@ public class JavaAtomic {
 		identityMap.put("mno", "mno");
 		identityMap.put("djf", "pqr");
 		for (Map.Entry<String, String> entry : identityMap.entrySet()) {
-			System.out.println("key is " + entry.getKey() + " and value is "
-					+ entry.getValue());
-		}*/
-
-		
-
+			System.out.println("key is " + entry.getKey() + " and value is " + entry.getValue());
+		}
 	}
-	
-	
-
 }

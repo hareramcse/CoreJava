@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ThreadSafeIteratorExample {
-	static int count = 0;
+	private static int count = 0;
 
 	public static void test() {
 
@@ -16,9 +16,8 @@ public class ThreadSafeIteratorExample {
 		}
 
 		for (Map.Entry<Integer, String> entry : myMap.entrySet()) {
-			System.out.println("it is printed by "
-					+ Thread.currentThread().getName() + " key is "
-					+ entry.getKey() + ", and value is " + entry.getValue());
+			System.out.println("it is printed by " + Thread.currentThread().getName() + " key is " + entry.getKey()
+					+ ", and value is " + entry.getValue());
 		}
 		System.out.println("total no of count is " + count);
 	}
@@ -80,18 +79,19 @@ public class ThreadSafeIteratorExample {
 			}
 		});
 
-		Thread t10 = new Thread(new Runnable() {
-
-			public void run() {
-				test();
-			}
-		});
 		Thread t9 = new Thread(new Runnable() {
 
 			public void run() {
 				test();
 			}
 		});
+		Thread t10 = new Thread(new Runnable() {
+
+			public void run() {
+				test();
+			}
+		});
+		
 		t1.setName("first Thread");
 		t1.start();
 

@@ -16,8 +16,7 @@ public class CustomReentrantLock implements CustomLock {
 	long threadId;
 
 	/**
-	 * Creates an instance of CustomReentrantLock and Initial lock hold count is
-	 * 0.
+	 * Creates an instance of CustomReentrantLock and Initial lock hold count is 0.
 	 */
 	CustomReentrantLock() {
 		lockHoldCount = 0;
@@ -26,19 +25,18 @@ public class CustomReentrantLock implements CustomLock {
 	@Override
 	public synchronized void lock() {
 		/*
-		 * Acquires the lock if it is not held by another thread and set lock
-		 * hold count to 1.
+		 * Acquires the lock if it is not held by another thread and set lock hold count
+		 * to 1.
 		 */
 		if (lockHoldCount == 0) {
 			lockHoldCount++;
 			threadId = Thread.currentThread().getId();
 		}
 		/*
-		 * If current thread already holds lock then hold count is increased by
-		 * 1 - Chain locking.
+		 * If current thread already holds lock then hold count is increased by 1 -
+		 * Chain locking.
 		 */
-		else if (lockHoldCount > 0
-				&& threadId == Thread.currentThread().getId()) {
+		else if (lockHoldCount > 0 && threadId == Thread.currentThread().getId()) {
 			lockHoldCount++;
 		}
 		// If the lock is held by another thread then the current
@@ -57,8 +55,8 @@ public class CustomReentrantLock implements CustomLock {
 	@Override
 	public synchronized void unlock() {
 		/*
-		 * If current thread is not holding the lock, if unlock is called it
-		 * throws IllegalMonitorStateException.
+		 * If current thread is not holding the lock, if unlock is called it throws
+		 * IllegalMonitorStateException.
 		 */
 		if (lockHoldCount == 0)
 			throw new IllegalMonitorStateException();
@@ -66,8 +64,7 @@ public class CustomReentrantLock implements CustomLock {
 		lockHoldCount--;
 
 		/*
-		 * If lockHoldCount is 0, lock is released and waiting thread is
-		 * notified.
+		 * If lockHoldCount is 0, lock is released and waiting thread is notified.
 		 */
 		if (lockHoldCount == 0)
 			notify();
@@ -77,8 +74,7 @@ public class CustomReentrantLock implements CustomLock {
 	@Override
 	public synchronized boolean tryLock() {
 		/*
-		 * Acquires the lock if it is not held by another thread and // returns
-		 * true
+		 * Acquires the lock if it is not held by another thread and // returns true
 		 */
 		if (lockHoldCount == 0) {
 			lock();

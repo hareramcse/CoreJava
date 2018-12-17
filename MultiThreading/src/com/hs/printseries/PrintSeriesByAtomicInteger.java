@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class PrintSeriesByAtomicInteger {
 
-	AtomicInteger sharedOutput = new AtomicInteger(0);
+	private AtomicInteger sharedOutput = new AtomicInteger(0);
 
 	private class ThreadTasks implements Runnable {
 
