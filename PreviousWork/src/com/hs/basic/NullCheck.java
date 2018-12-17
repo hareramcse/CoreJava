@@ -1,4 +1,4 @@
-package com.hs.previouswork;
+package com.hs.basic;
 
 public class NullCheck {
 	/*public void run(String s){

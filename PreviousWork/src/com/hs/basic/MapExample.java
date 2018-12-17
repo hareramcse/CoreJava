@@ -1,4 +1,4 @@
-package com.hs.previouswork;
+package com.hs.basic;
 
 import java.util.TreeSet;
 

@@ -1,6 +1,6 @@
-package com.hs.previouswork;
+package com.hs.basic;
 
-public class ContianerObject {
+public class ContainerObject {
 	public static void main(String[] args) {
 		String str=new String("abc");
 		try {

@@ -1,4 +1,4 @@
-package com.hs.previouswork;
+package com.hs.basic;
 
 class Thread1 extends Thread {
 	public volatile boolean flag = true;

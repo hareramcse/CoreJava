@@ -1,4 +1,4 @@
-package com.hs.previouswork;
+package com.hs.basic;
 
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -18,7 +18,7 @@ public class PriorityQueueExample {
 		pQueue.add(67);
 		pQueue.add(1452);
 		System.out.println("size of queue is " + pQueue.size());
-		for(int i =0; i<= 10; i++)
-		System.out.println(pQueue.poll());
+		for (int i = 0; i <= 10; i++)
+			System.out.println(pQueue.poll());
 	}
 }

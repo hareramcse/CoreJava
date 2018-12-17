@@ -1,4 +1,4 @@
-package com.hs.training;
+package com.hs.program;
 
 public class FibonacciWithIteration {
 	public int printSeries(int n){

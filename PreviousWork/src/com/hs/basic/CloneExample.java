@@ -1,4 +1,4 @@
-package com.hs.previouswork;
+package com.hs.basic;
 
 class Address {
 	String street;
@@ -48,7 +48,7 @@ class Customer implements Cloneable {
 
 	@Override
 	public String toString() {
-		return "" + cid + "\t" + cname + "\t" + add;
+		return "" + cid + "\t" + cname + "\t" + "\t"+ add;
 	}
 }
 

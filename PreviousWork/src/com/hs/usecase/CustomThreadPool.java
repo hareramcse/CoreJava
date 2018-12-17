@@ -58,12 +58,10 @@ class PoolThread extends Thread {
 			while (!isStopped()) {
 				Runnable runnable = queue.take();
 				runnable.run();
-				System.out.println(Thread.currentThread().getName()
-						+ " has executed task.");
+				System.out.println(Thread.currentThread().getName() + " has executed task.");
 			}
 		} catch (InterruptedException e) {
-			System.out.println(Thread.currentThread().getName()
-					+ " has been stopped.");
+			System.out.println(Thread.currentThread().getName() + " has been stopped.");
 		}
 	}
 

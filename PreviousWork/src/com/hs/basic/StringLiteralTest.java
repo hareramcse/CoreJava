@@ -1,4 +1,4 @@
-package com.hs.string;
+package com.hs.basic;
 
 public class StringLiteralTest {
 	public static void main(String[] args) {

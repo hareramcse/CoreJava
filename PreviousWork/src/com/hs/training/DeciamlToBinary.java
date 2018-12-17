@@ -1,4 +1,4 @@
-package com.hs.usecase;
+package com.hs.training;
 
 public class DeciamlToBinary {
 	public void decimalToBinary(int num) {

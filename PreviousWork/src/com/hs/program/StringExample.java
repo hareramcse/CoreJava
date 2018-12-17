@@ -1,4 +1,4 @@
-package com.hs.previouswork;
+package com.hs.program;
 
 import java.util.Arrays;
 import java.util.Collection;

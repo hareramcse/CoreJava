@@ -1,7 +1,7 @@
-package com.hs.previouswork;
+package com.hs.basic;
 
 public class EvenOddByTwoThread {
-	static Object lock = new Object();
+	private static Object lock = new Object();
 
 	public static void main(String[] args) {
 		Thread t1 = new Thread(new Runnable() {
@@ -43,9 +43,9 @@ public class EvenOddByTwoThread {
 		try {
 			t1.start();
 			t2.start();
-			t1.join();
+			t2.join();
 		} catch (Exception e) {
-
+			System.out.println("exception occured");
 		}
 		System.out.println();
 		System.out.println("Main Over");

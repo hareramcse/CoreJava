@@ -1,4 +1,4 @@
-package com.hs.usecase;
+package com.hs.program;
 
 public class PolindromWithRecursion {
 

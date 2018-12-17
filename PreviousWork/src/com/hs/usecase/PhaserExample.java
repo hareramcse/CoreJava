@@ -10,16 +10,13 @@ public class PhaserExample {
 			@Override
 			public void run() {
 				try {
-					System.out.println(Thread.currentThread().getName()
-							+ " arrived");
-					phaser.arriveAndAwaitAdvance();// threads register arrival
-													// to the phaser.
+					System.out.println(Thread.currentThread().getName() + " arrived");
+					phaser.arriveAndAwaitAdvance();// threads register arrival to the phaser.
 					Thread.sleep(sleepTime);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				System.out.println(Thread.currentThread().getName()
-						+ " after passing barrier");
+				System.out.println(Thread.currentThread().getName() + " after passing barrier");
 			}
 		}.start();
 	}
@@ -29,12 +26,9 @@ public class PhaserExample {
 		phaser.register();// register self... phaser waiting for 0 party
 							// (thread)
 		System.out.println("Phasecount is " + phaser.getPhase());
-		new PhaserExample().testPhaser(phaser, 2000);// phaser waiting for 2
-														// parties
-		new PhaserExample().testPhaser(phaser, 4000);// phaser waiting for 3
-														// parties
-		new PhaserExample().testPhaser(phaser, 6000);// phaser waiting for 4
-														// parties
+		new PhaserExample().testPhaser(phaser, 2000);// phaser waiting for 2 parties
+		new PhaserExample().testPhaser(phaser, 4000);// phaser waiting for 3 parties
+		new PhaserExample().testPhaser(phaser, 6000);// phaser waiting for 4 parties
 		// now that all threads are initiated, we will de-register main thread
 		// so that the barrier condition of 3 thread arrival is meet.
 		phaser.arriveAndDeregister();

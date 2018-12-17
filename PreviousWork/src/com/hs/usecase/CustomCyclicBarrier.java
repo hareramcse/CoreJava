@@ -1,11 +1,11 @@
 package com.hs.usecase;
 
 class CyclicBarrier {
-	//int initialParties;
+	// int initialParties;
 	int partiesAwait;
 
 	public CyclicBarrier(int parties) {
-	//	initialParties = parties;
+		// initialParties = parties;
 		partiesAwait = parties;
 	}
 
@@ -14,8 +14,8 @@ class CyclicBarrier {
 		if (partiesAwait > 0) {
 			this.wait();
 		} else {
-			//partiesAwait = initialParties;
-			notifyAll();
+			// partiesAwait = initialParties;
+			this.notifyAll();
 		}
 	}
 }

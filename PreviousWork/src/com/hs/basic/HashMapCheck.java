@@ -1,4 +1,4 @@
-package com.hs.previouswork;
+package com.hs.basic;
 
 class Employee {
 	String name;

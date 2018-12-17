@@ -1,4 +1,4 @@
-package com.hs.string;
+package com.hs.program;
 
 public class StringPermutation {
 

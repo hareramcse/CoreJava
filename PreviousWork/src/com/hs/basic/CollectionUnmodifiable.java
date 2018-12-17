@@ -1,4 +1,4 @@
-package com.hs.previouswork;
+package com.hs.basic;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +12,7 @@ public class CollectionUnmodifiable {
 		List<String> l = Collections.unmodifiableList(list);
 		// we cant modify the final list
 		// Exception in thread "main" java.lang.UnsupportedOperationException
-		l.set(1, "hello");
+		l.add("hello");
 		System.out.println(l);
 		
 	}

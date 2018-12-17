@@ -1,4 +1,4 @@
-package com.hs.basic;
+package com.hs.program;
 
 
 public class SumOfPrimeNumber {

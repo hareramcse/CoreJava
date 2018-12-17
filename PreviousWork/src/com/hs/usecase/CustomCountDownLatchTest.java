@@ -35,8 +35,7 @@ class Processor implements Runnable {
 	public void run() {
 		System.out.println(Thread.currentThread().getName() + " started...");
 		try {
-			System.out
-					.println(Thread.currentThread().getName() + " waiting...");
+			System.out.println(Thread.currentThread().getName() + " waiting...");
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -61,6 +60,7 @@ public class CustomCountDownLatchTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		executorService.shutdown();
 		System.out.println("completed.....");
 	}
 }
