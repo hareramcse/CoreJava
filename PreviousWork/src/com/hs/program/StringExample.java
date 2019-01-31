@@ -8,15 +8,15 @@ import java.util.Set;
 
 public class StringExample {
 	// this is the code of frequency method which is in Collection interface
-	public static int countNoOfWords(Collection<?> c, Object o) {
+	public static int countNoOfWords(Collection<?> c, Object word) {
         int result = 0;
-        if (o == null) {
+        if (word == null) {
             for (Object e : c)
                 if (e == null)
                     result++;
         } else {
             for (Object e : c)
-                if (o.equals(e))
+                if (word.equals(e))
                     result++;
         }
         return result;
@@ -26,8 +26,8 @@ public class StringExample {
 		String[] str = s1.split(" ");
 		List<String> list  = Arrays.asList(str);
 		Set<String> set = new HashSet<String>(list);
-		for(String s:set){
-			System.out.println(s + " comes " + countNoOfWords(list, s) + " times");			
+		for(String word:set){
+			System.out.println(word + " comes " + countNoOfWords(list, word) + " times");			
 		}
 		
 		// to reverse the string

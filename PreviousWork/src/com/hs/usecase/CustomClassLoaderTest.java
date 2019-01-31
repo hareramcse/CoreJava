@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 class CustomClassLoader extends ClassLoader {
 	public Class<?> findClass(String name) {
-		System.out.println("helo findclss");
+		System.out.println("hello findclass");
 		byte[] bt = loadClassData(name);
 		return defineClass(name, bt, 0, bt.length);
 	}

@@ -35,7 +35,6 @@ class Retailer {
 	public String toString() {
 		return "id=" + id + ", name=" + name;
 	}
-
 }
 
 class SortByid implements Comparator<Retailer> {
@@ -77,7 +76,13 @@ public class SortByComparator {
 
 		Collections.sort(list, new SortByid());
 		System.out.println(list);
+		
 		Collections.sort(list, new SortByName());
+		
+		// it will not be deleted because Retailer class is not implemented equals method. to remve any element from arraylist
+		//there should be equals method overrided.
+		list.remove(new Retailer(2, "Triloki"));
+		System.out.println(list.size());
 		System.out.println(list);
 
 	}

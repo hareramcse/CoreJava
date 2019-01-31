@@ -20,17 +20,16 @@ class TransientClass implements Serializable {
 
 	private void writeObject(ObjectOutputStream o) throws IOException {
 		o.defaultWriteObject();
-		/*String s = propertyOne + "modified";
-		o.writeObject(s);*/
+		String s = propertyOne + "modified";
+		o.writeObject(s);
 	}
 
-	private void readObject(ObjectInputStream o) throws IOException,
-			ClassNotFoundException {
+	private void readObject(ObjectInputStream o) throws IOException, ClassNotFoundException {
 
 		o.defaultReadObject();
 
-		/*String s = (String) o.readObject();
-		propertyOne = s.substring(0, 8);*/
+		String s = (String) o.readObject();
+		propertyOne = s.substring(0, 8);
 
 	}
 
@@ -71,6 +70,8 @@ public class TransientSerialization {
 
 		System.out.println("--Read object--");
 		System.out.println("propertyOne: " + testRead.getPropertyOne());
+		System.out.println(
+				"static variables are not serialized, So during deserialization static variable value will loaded from the class.(Current value will be loaded.");
 		System.out.println("staticValue: " + TransientClass.getStaticValue());
 	}
 }

@@ -1,4 +1,4 @@
-package com.hs.basic;
+package com.hs.printseries;
 
 public class EvenOddByTwoThread {
 	private static Object lock = new Object();
