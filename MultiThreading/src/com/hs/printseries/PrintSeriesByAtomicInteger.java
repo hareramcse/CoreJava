@@ -2,48 +2,39 @@ package com.hs.printseries;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class PrintSeriesByAtomicInteger {
+class ThreadTasks implements Runnable {
+	AtomicInteger atomicInteger;
+	int threadPosition;
 
-	private AtomicInteger sharedOutput = new AtomicInteger(0);
+	public ThreadTasks(AtomicInteger atomicInteger, int threadPosition) {
+		this.atomicInteger = atomicInteger;
+		this.threadPosition = threadPosition;
+	}
 
-	private class ThreadTasks implements Runnable {
-
-		private final int threadPosition;
-
-		public ThreadTasks(int threadPosition) {
-			this.threadPosition = threadPosition;
-		}
-
-		@Override
-		public void run() {
-			while (sharedOutput.get() < 10) {
-				if (sharedOutput.get() % 4 == this.threadPosition) {
-					int value = sharedOutput.get() + 1;
-					System.out.println("Printing output for Thread: "
-							+ this.threadPosition + "  " + value);
-					sharedOutput.incrementAndGet();
-				}
+	@Override
+	public void run() {
+		while (atomicInteger.get() < 10) {
+			if (atomicInteger.get() % 4 == this.threadPosition) {
+				int value = atomicInteger.get() + 1;
+				System.out.println("Printing output for Thread: " + this.threadPosition + "  " + value);
+				atomicInteger.incrementAndGet();
 			}
 		}
 	}
+}
+
+public class PrintSeriesByAtomicInteger {
 
 	public static void main(String args[]) {
+		AtomicInteger atomicInteger = new AtomicInteger(0);
 
-		PrintSeriesByAtomicInteger t = new PrintSeriesByAtomicInteger();
-
-		ThreadTasks t1 = t.new ThreadTasks(0);
-		ThreadTasks t2 = t.new ThreadTasks(1);
-		ThreadTasks t3 = t.new ThreadTasks(2);
-		ThreadTasks t4 = t.new ThreadTasks(3);
-
-		Thread ts1 = new Thread(t1);
-		Thread ts2 = new Thread(t2);
-		Thread ts3 = new Thread(t3);
-		Thread ts4 = new Thread(t4);
-		ts1.start();
-		ts2.start();
-		ts3.start();
-		ts4.start();
+		Thread t1 = new Thread(new ThreadTasks(atomicInteger, 0));
+		Thread t2 = new Thread(new ThreadTasks(atomicInteger, 1));
+		Thread t3 = new Thread(new ThreadTasks(atomicInteger, 2));
+		Thread t4 = new Thread(new ThreadTasks(atomicInteger, 3));
+		t1.start();
+		t2.start();
+		t3.start();
+		t4.start();
 	}
-
 }

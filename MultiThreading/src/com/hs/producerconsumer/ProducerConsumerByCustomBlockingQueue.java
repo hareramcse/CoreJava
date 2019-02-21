@@ -1,10 +1,10 @@
 package com.hs.producerconsumer;
 
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
 class CustomBlockingQueue<E> {
-	private List<Integer> queue = new LinkedList<Integer>();
+	private Queue<Integer> queue = new LinkedList<Integer>();
 	private int size;
 
 	public CustomBlockingQueue(int size) {
@@ -30,23 +30,23 @@ class CustomBlockingQueue<E> {
 		if (queue.size() == size) {
 			notifyAll();
 		}
-		return (Integer) queue.remove(0);
+		return (Integer) queue.poll();
 	}
 }
 
 class Producer2 implements Runnable {
 
-	private CustomBlockingQueue<Integer> sharedQueue;
+	private CustomBlockingQueue<Integer> queue;
 
-	public Producer2(CustomBlockingQueue<Integer> sharedQueue) {
-		this.sharedQueue = sharedQueue;
+	public Producer2(CustomBlockingQueue<Integer> queue) {
+		this.queue = queue;
 	}
 
 	public void run() {
 		for (int i = 0; i < 10; i++) {
 			try {
 				System.out.println(Thread.currentThread().getName() + " produces " + i);
-				sharedQueue.put(i);
+				queue.put(i);
 			} catch (InterruptedException ex) {
 				ex.printStackTrace();
 			}
@@ -56,16 +56,16 @@ class Producer2 implements Runnable {
 
 class Consumer2 implements Runnable {
 
-	private CustomBlockingQueue<Integer> sharedQueue;
+	private CustomBlockingQueue<Integer> queue;
 
-	public Consumer2(CustomBlockingQueue<Integer> sharedQueue) {
-		this.sharedQueue = sharedQueue;
+	public Consumer2(CustomBlockingQueue<Integer> queue) {
+		this.queue = queue;
 	}
 
 	public void run() {
 		while (true) {
 			try {
-				System.out.println(Thread.currentThread().getName() + " consumes " + sharedQueue.take());
+				System.out.println(Thread.currentThread().getName() + " consumes " + queue.take());
 			} catch (InterruptedException ex) {
 				ex.printStackTrace();
 			}

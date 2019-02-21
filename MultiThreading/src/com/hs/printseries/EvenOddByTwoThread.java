@@ -1,44 +1,58 @@
 package com.hs.printseries;
 
+class Odd implements Runnable {
+	Object lock;
+
+	Odd(Object lock) {
+		this.lock = lock;
+	}
+
+	public void run() {
+		for (int i = 1; i < 10; i = i + 2) {
+			synchronized (lock) {
+				System.out.print(" " + i);
+				try {
+					lock.notify();
+					lock.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+}
+
+class Even implements Runnable {
+	Object lock;
+
+	Even(Object lock) {
+		this.lock = lock;
+	}
+
+	public void run() {
+		for (int i = 2; i < 10; i = i + 2) {
+			synchronized (lock) {
+				System.out.print(" " + i);
+				try {
+					lock.notify();
+					if (i == 10) {
+						break;
+					}
+					lock.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+}
+
 public class EvenOddByTwoThread {
-	private static Object lock = new Object();
 
 	public static void main(String[] args) {
-		Thread t1 = new Thread(new Runnable() {
-
-			public void run() {
-				for (int i = 1; i < 10; i = i + 2) {
-					synchronized (lock) {
-						System.out.print(" " + i);
-						try {
-							lock.notify();
-							lock.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-		});
-		Thread t2 = new Thread(new Runnable() {
-
-			public void run() {
-				for (int i = 2; i < 10; i = i + 2) {
-					synchronized (lock) {
-						System.out.print(" " + i);
-						try {
-							lock.notify();
-							if (i == 10) {
-								break;
-							}
-							lock.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-		});
+		Object lock = new Object();
+		Thread t1 = new Thread(new Odd(lock));
+		Thread t2 = new Thread(new Even(lock));
 
 		try {
 			t1.start();
