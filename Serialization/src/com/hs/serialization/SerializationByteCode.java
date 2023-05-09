@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import java.io.Serializable;
-
-import javax.xml.bind.DatatypeConverter;
+import java.util.HexFormat;
 
 class parent1 implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -37,9 +36,8 @@ public class SerializationByteCode extends parent1 implements Serializable {
 		oos.close();
 
 		try {
-			byte[] bytes = CustomSerialization
-					.readFileAsByteArray("E:/Workspace/OwnWork/temp");
-			System.out.println(DatatypeConverter.printHexBinary(bytes));
+			byte[] bytes = CustomSerialization.readFileAsByteArray("E:/Workspace/OwnWork/temp");
+			System.out.println(HexFormat.of().formatHex(bytes));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

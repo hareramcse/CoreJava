@@ -7,8 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import java.io.Serializable;
-
-import javax.xml.bind.DatatypeConverter;
+import java.util.HexFormat;
 
 class AnotherClass implements Serializable {
 	private static final long serialVersionUID = -6033426231897334231L;
@@ -63,7 +62,7 @@ public class CustomSerialization {
 
 		try {
 			byte[] bytes = CustomSerialization.readFileAsByteArray("E:/Java Interview/Interview Preparation/testfile");
-			System.out.println(DatatypeConverter.printHexBinary(bytes));
+			System.out.println(HexFormat.of().formatHex(bytes));
 			System.out.println();
 		} catch (IOException e) {
 			e.printStackTrace();
