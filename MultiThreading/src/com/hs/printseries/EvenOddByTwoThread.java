@@ -8,9 +8,9 @@ class Odd implements Runnable {
 	}
 
 	public void run() {
-		for (int i = 1; i < 10; i = i + 2) {
+		for (int i = 1; i < 100; i = i + 2) {
 			synchronized (lock) {
-				System.out.print(" " + i);
+				System.out.println(Thread.currentThread().getName() + " " + i);
 				try {
 					lock.notify();
 					lock.wait();
@@ -30,14 +30,11 @@ class Even implements Runnable {
 	}
 
 	public void run() {
-		for (int i = 2; i < 10; i = i + 2) {
+		for (int i = 2; i < 100; i = i + 2) {
 			synchronized (lock) {
-				System.out.print(" " + i);
+				System.out.println(Thread.currentThread().getName() + " " + i);
 				try {
 					lock.notify();
-					if (i == 10) {
-						break;
-					}
 					lock.wait();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -52,7 +49,9 @@ public class EvenOddByTwoThread {
 	public static void main(String[] args) {
 		Object lock = new Object();
 		Thread t1 = new Thread(new Odd(lock));
+		t1.setName("Odd Thread");
 		Thread t2 = new Thread(new Even(lock));
+		t2.setName("Even Thread");
 
 		try {
 			t1.start();
